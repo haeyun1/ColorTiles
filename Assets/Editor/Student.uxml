@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="Student" style="flex-grow: 1; position: relative; justify-content: space-between; align-items: stretch; flex-direction: row; align-self: center; width: 80%;">
+        <ui:Label tabindex="-1" text="이름" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StudentName" style="font-size: 30px; color: rgb(0, 0, 0);" />
+        <ui:Label tabindex="-1" text="200" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StudentScore" style="font-size: 30px; -unity-text-align: middle-center;" />
+    </ui:VisualElement>
+</ui:UXML>

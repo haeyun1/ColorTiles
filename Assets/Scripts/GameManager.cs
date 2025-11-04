@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    [SerializeField] private string studentName;
+    [SerializeField] private string studentPhoneNum;
     [SerializeField] private int score;
     [SerializeField] private float maxTime = 120f;
     [SerializeField] private float curTime;
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
         }
 
         curTime = 0;
+        SaveForRank();
         UIManager.instance.SetState(UIManager.State.End);
     }
 
@@ -79,8 +82,18 @@ public class GameManager : MonoBehaviour
     {
         score = 0;
     }
-    // -------------------------------------------------
 
+    public void SaveForRank()
+    {
+        RankingData.AddScore(studentName, studentPhoneNum, score);
+    }
+    // -------------------------------------------------
+    public void SetInformation(string studentName, string studentPhoneNum = "")
+    {
+        this.studentName = studentName;
+        if (string.IsNullOrWhiteSpace(studentPhoneNum)) return;
+        this.studentPhoneNum = studentPhoneNum;
+    }
     public void QuitGame()
     {
 #if UNITY_EDITOR

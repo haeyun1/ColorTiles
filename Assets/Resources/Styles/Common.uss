@@ -75,6 +75,7 @@ Button.img-btn {
     border-radius: 20px;
     align-items: center;
     justify-content: space-around;
+    position: absolute;
 }
 
 ProgressBar {
