@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="Student" style="flex-grow: 1; position: relative; justify-content: space-between; align-items: stretch; flex-direction: row; align-self: center; width: 80%;">
-        <ui:Label tabindex="-1" text="이름" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StudentName" style="font-size: 30px; color: rgb(0, 0, 0);" />
-        <ui:Label tabindex="-1" text="200" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StudentScore" style="font-size: 30px; -unity-text-align: middle-center;" />
+    <ui:VisualElement name="Student" style="flex-grow: 1; position: relative; justify-content: space-between; align-items: stretch; flex-direction: row; align-self: center; width: 80%; -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;);">
+        <ui:Label tabindex="-1" text="name" parse-escape-sequences="false" display-tooltip-when-elided="true" name="StudentName" style="font-size: 30px; color: rgb(0, 0, 0); -unity-font-definition: url(&quot;project://database/Library/unity%20default%20resources?fileID=10102&amp;guid=0000000000000000e000000000000000&amp;type=0#LegacyRuntime&quot;); -unity-font-style: bold;" />
+        <ui:Label tabindex="-1" text="200" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StudentScore" style="font-size: 30px; -unity-text-align: middle-center; -unity-font-style: bold;" />
     </ui:VisualElement>
 </ui:UXML>

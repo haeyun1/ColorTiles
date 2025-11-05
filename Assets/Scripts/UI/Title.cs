@@ -35,8 +35,9 @@ public class Title : MonoBehaviour, IUIState
         popUps = overlay.Query<VisualElement>(className: "pop-up").ToList();
         scrollView = popUps[1].Q<ScrollView>();
         textFields = popUps[2].Query<TextField>().ToList();
-        Debug.Log(textFields[0].name + " " + textFields[1].name);
+        textFields.Add(popUps[4].Q<VisualElement>("PWContainer").Q<TextField>());
         btns.Add(overlay.Q<VisualElement>().Q<Button>());
+        btns.Add(popUps[4].Q<VisualElement>("PWContainer").Q<Button>());
         UIManager.instance.Hide(overlay);
         UIManager.instance.ShowTile(false);
         foreach (var btn in btns)
@@ -44,7 +45,6 @@ public class Title : MonoBehaviour, IUIState
             btn.clicked += () => OnClick(btn.name);
         }
         RefreshRanking();
-        TextFieldKoreanFix();
     }
 
     void OnClick(string btnName)
@@ -63,6 +63,7 @@ public class Title : MonoBehaviour, IUIState
                 {
                     GameManager.instance.SetInformation(textFields[0].value, textFields[1].value);
                     UIManager.instance.SetState(UIManager.State.InGame);
+                    GameManager.instance.SetState(true);
                 }
                 break;
             case "HelpBtn":
@@ -76,6 +77,17 @@ public class Title : MonoBehaviour, IUIState
                 break;
             case "QuitBtn":
                 GameManager.instance.QuitGame();
+                break;
+            case "ResetBtn":
+                SelectPopUp(4);
+                break;
+            case "ApplyBtn":
+                if (textFields[2].value == "041020")
+                {
+                    RankingData.DeleteFile();
+                    RefreshRanking();
+                    UIManager.instance.Hide(overlay);
+                }
                 break;
         }
     }
@@ -104,31 +116,10 @@ public class Title : MonoBehaviour, IUIState
             item.Q<Label>("StudentScore").text = data.scores[i].score.ToString();
             scrollView.Add(item);
         }
-        topScore.text = data.scores[0].score.ToString();
+        if (count > 0) topScore.text = data.scores[0].score.ToString();
+        else topScore.text = "0";
     }
 
-    void TextFieldKoreanFix()
-    {
-        foreach (TextField textField in textFields)
-        {
-            textField.RegisterCallback<InputEvent>(evt =>
-            {
-                if (Input.compositionString.Length > 0)
-                {
-                    evt.StopImmediatePropagation();
-                }
-            });
-
-            textField.RegisterValueChangedCallback(evt =>
-            {
-                if (Input.compositionString.Length > 0)
-                {
-                    // 조합 중에는 valueChanged가 불필요하게 호출될 수 있음
-                    evt.StopPropagation();
-                }
-            });
-        }
-    }
     public void Exit()
     {
         gameObject.SetActive(false);

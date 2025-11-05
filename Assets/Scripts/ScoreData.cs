@@ -6,6 +6,7 @@ public class ScoreData
 {
     public string studentName;
     public string studentPhoneNum;
+    public string timeStamp;
     public int score;
 }
 

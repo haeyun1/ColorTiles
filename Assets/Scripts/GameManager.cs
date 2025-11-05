@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int score;
     [SerializeField] private float maxTime = 120f;
     [SerializeField] private float curTime;
-
+    [SerializeField] private bool inGame;
     private Coroutine coroutine;
 
     void Awake()
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
+        SetState(false);
     }
 
     // --------------------- Timer ---------------------
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
 
         curTime = 0;
         SaveForRank();
+        SetState(false);
         UIManager.instance.SetState(UIManager.State.End);
     }
 
@@ -101,5 +103,15 @@ public class GameManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void SetState(bool inGame)
+    {
+        this.inGame = inGame;
+    }
+
+    public bool GetState()
+    {
+        return inGame;
     }
 }

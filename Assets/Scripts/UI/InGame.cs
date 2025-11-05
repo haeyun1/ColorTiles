@@ -39,6 +39,7 @@ public class InGame : MonoBehaviour, IUIState
 
     void OnClick()
     {
+        GameManager.instance.SetState(false);
         UIManager.instance.SetState(UIManager.State.Title);
     }
 
